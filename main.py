@@ -1,11 +1,15 @@
+# Python
+from typing import List
+
+# Models
+
+from models.Tweet import Tweet
+
 # FastAPI
 from fastapi import FastAPI
-from models.User import User
-from models.Tweet import Tweet
+from routes import router
 
 
 app = FastAPI()
 
-@app.get(path="/")
-def home():
-    return {"Twitter API": "Working"}
+app.include_router(router.api_router)
