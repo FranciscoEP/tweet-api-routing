@@ -1,21 +1,23 @@
 # Python
 from typing import List
-
+import json
 # Models
 from models.Tweet import Tweet
 from models.User import User, UserLogin, UserRegister
+
 from fastapi import status
 from fastapi import APIRouter
+from fastapi import Body
 
 router = APIRouter()
 
 @router.post(
     path="/signup",
-    response_model=Tweet,
+    response_model=User,
     status_code=status.HTTP_201_CREATED,
     summary="Register a new user",
     tags=['login'])
-def signup(tweet: Tweet):
+def signup(user: UserRegister = Body(...)):
     """
     Signup a new user
     This path operation register a new user in the app.
@@ -33,8 +35,15 @@ def signup(tweet: Tweet):
         - created_at: date
         - updated_at: date
     """
-
-    pass
+    with open("users.json", "r+", encoding="UTF-8") as f:
+        results = json.loads(f.read())
+        user_dict = user.dict()
+        user_dict["user_id"] = str(user_dict["user_id"])
+        user_dict["birth_date"] = str(user_dict["birth_date"])
+        results.append(user_dict)
+        f.seek(0)
+        f.write(json.dumps(results))
+        return user
 
 @router.post(
     path="/login",

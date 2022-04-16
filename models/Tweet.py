@@ -7,7 +7,7 @@ from typing import Optional
 # Pydantic
 from pydantic import BaseModel
 from pydantic import Field
-
+from models.User import User
 
 # from User import User
 
@@ -20,4 +20,4 @@ class Tweet(BaseModel):
         )
     created_at: datetime = Field(default=datetime.now())
     updated_at: Optional[datetime] = Field(default=None)
-    # by: User = Field(...)
+    by: User = Field(...)

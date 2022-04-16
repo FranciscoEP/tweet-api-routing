@@ -7,18 +7,18 @@ from pydantic import Field
 from pydantic import EmailStr
 
 
-class User_Base(BaseModel):
+class UserBase(BaseModel):
     user_id: UUID = Field(...)
     email: EmailStr = Field(...)
 
-class UserLogin(User_Base):
+class UserLogin(UserBase):
     password: str = Field(
         ...,
         min_length=8,
         max_length=64,
     )
 
-class User(User_Base):
+class User(UserBase):
     first_name: str = Field(
         ...,
         min_length=1,
@@ -31,7 +31,7 @@ class User(User_Base):
         )
     birth_date: Optional[date] = Field(default=None)
 
-class UserRegister(User_Base):
+class UserRegister(User):
     password: str = Field(
         ...,
         min_length=8,
