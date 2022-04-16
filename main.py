@@ -1,4 +1,8 @@
+# FastAPI
 from fastapi import FastAPI
+from models.User import User
+from models.Tweet import Tweet
+
 
 app = FastAPI()
 
