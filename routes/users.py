@@ -12,7 +12,7 @@ router = APIRouter()
 @router.get(
     path="/",
     status_code=status.HTTP_200_OK,
-    response_model=User,
+    response_model=List[User],
     summary="Show all users",
     tags=['Users'])
 def show_all(user: User):

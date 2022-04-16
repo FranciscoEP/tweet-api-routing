@@ -1,9 +1,6 @@
 # Python
 from typing import List
 
-# Models
-
-from models.Tweet import Tweet
 
 # FastAPI
 from fastapi import FastAPI
