@@ -12,7 +12,7 @@ from models.User import User
 # from User import User
 
 class Tweet(BaseModel):
-    tweet_id: UUID = Field(..., alias="id")
+    tweet_id: UUID = Field(...)
     content: str = Field(
         ...,
         min_length=1,
